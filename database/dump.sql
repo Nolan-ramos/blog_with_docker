@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : ven. 14 oct. 2022 à 19:38
+-- Généré le : dim. 16 oct. 2022 à 19:29
 -- Version du serveur : 10.9.3-MariaDB-1:10.9.3+maria~ubu2204
 -- Version de PHP : 8.0.24
 
@@ -28,11 +28,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `postes` (
-  `id` int(11) NOT NULL,
+  `id_poste` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `texte` text NOT NULL,
   `date_poste` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `postes`
+--
+
+INSERT INTO `postes` (`id_poste`, `id_user`, `texte`, `date_poste`) VALUES
+(2, 1, 'coucou', '2015-10-22 11:58:42'),
+(4, 3, 'cc', '2016-10-22 09:24:46'),
+(5, 3, 'cc', '2016-10-22 09:24:52');
 
 -- --------------------------------------------------------
 
@@ -53,7 +62,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `mail`, `mdp`, `prenom`, `nom`) VALUES
-(1, 'theo', 'theo', 'theo', 'theo');
+(1, 'theo', 'theo', 'theo', 'theo'),
+(3, 'nolan', 'nolan', 'nolan', 'nolan');
 
 --
 -- Index pour les tables déchargées
@@ -63,7 +73,7 @@ INSERT INTO `user` (`id`, `mail`, `mdp`, `prenom`, `nom`) VALUES
 -- Index pour la table `postes`
 --
 ALTER TABLE `postes`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_poste`);
 
 --
 -- Index pour la table `user`
@@ -79,13 +89,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `postes`
 --
 ALTER TABLE `postes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_poste` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

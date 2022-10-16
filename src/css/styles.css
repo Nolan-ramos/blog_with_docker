@@ -21,7 +21,8 @@ nav ul li:nth-child(2){
 
 nav ul li button,
 .form_deconnexion input[type="submit"],
-.create_poste input[type="submit"]{
+.create_poste input[type="submit"],
+.delete_poste{
     background: #222222;
     color:white;
     outline:0;
@@ -127,4 +128,15 @@ nav ul li button,
     border-radius: 12px;
     margin-top: 25px;
     padding:25px;
+}
+
+.infos_poste form{
+    display: inline-block;
+}
+
+.delete_poste{
+    margin-left: 15px;
+    background: #333333;
+    padding:15px 25px;
+    border-radius: 12px;
 }

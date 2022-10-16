@@ -1,5 +1,6 @@
 <?php
     session_start();
+    error_reporting(0);
     $user = "root";
     $pwd = "root";
     $pdo = new PDO('mysql:host=db;dbname=blog', $user, $pwd);
@@ -60,6 +61,11 @@
             $insert_poste = $pdo->prepare("INSERT INTO postes (id_user, texte, date_poste) VALUES ('".$id_user."','".$text."','".$date."');");
             $insert_poste->execute();
         }
+	}
+    if (isset($_POST['delete_post'])) {
+        $id_poste = $_POST['id_poste'];
+        $delete_poste = $pdo->prepare("DELETE FROM postes WHERE id_poste = '".$id_poste."'");
+        $delete_poste->execute();
 	}
     $select_postes = $pdo->prepare('SELECT * FROM postes INNER JOIN user ON postes.id_user = user.id');
     $select_postes->execute();
@@ -131,12 +137,21 @@
         <div class="poste">
             <div class="infos_poste">
                 <span>poste de : <?= $donnee_select_postes["prenom"]?> <?= $donnee_select_postes["nom"]?> créé le : <?= $donnee_select_postes["date_poste"]?></span>
+                <?php
+                if($_SESSION['id'] == $donnee_select_postes["id_user"]){
+                ?>    
+                    <form method="post" action="index.php">
+                        <input type="hidden" name="id_poste" value="<?= $donnee_select_postes["id_poste"]?>">
+                        <input type="submit" name="delete_post" value="supprimer" class="delete_poste">
+                    </form>
+                <?php  
+                }
+                ?>
                 <div class="text_poste">
                     <?= $donnee_select_postes["texte"]?>
                 </div>
             </div>
         </div>
-        
     <?php endforeach; ?>
     <script src="js/script.js"></script>
 </body>

@@ -6,25 +6,28 @@ services:
             context: .
             dockerfile: Dockerfile
         ports:
-            - '80:80'
+            - '8585:80'
         volumes:
-            - ./app:/var/www/html
+            - ./src:/var/www/html
 
     db:
         image: 'mariadb'
-        restart: always
+        ports:
+            - "3306:3306"
         environment:
-            MYSQL_DATABASE: data
-            MYSQL_ROOT_PASSWORD: password
-#        volumes:
-#            # Pour lancer un dump automatiquement au montage du conteneur
-#            - ./database/dump.sql:/docker-entrypoint-initdb.d/dump.sql
-
+            MYSQL_DATABASE: blog
+            MYSQL_USER: nolan
+            MYSQL_PASSWORD: nolan
+            MYSQL_ROOT_PASSWORD: root
+        volumes:
+            # Pour lancer un dump automatiquement au montage du conteneur
+            - ./database/dump.sql:/docker-entrypoint-initdb.d/dump.sql
 
     phpmyadmin:
         image: phpmyadmin
-        restart: always
         ports:
             - '8080:80'
         environment:
             - PMA_ARBITRARY=1
+volumes:
+    persistent:

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : dim. 16 oct. 2022 à 19:29
+-- Généré le : dim. 16 oct. 2022 à 20:41
 -- Version du serveur : 10.9.3-MariaDB-1:10.9.3+maria~ubu2204
 -- Version de PHP : 8.0.24
 
@@ -34,15 +34,6 @@ CREATE TABLE `postes` (
   `date_poste` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Déchargement des données de la table `postes`
---
-
-INSERT INTO `postes` (`id_poste`, `id_user`, `texte`, `date_poste`) VALUES
-(2, 1, 'coucou', '2015-10-22 11:58:42'),
-(4, 3, 'cc', '2016-10-22 09:24:46'),
-(5, 3, 'cc', '2016-10-22 09:24:52');
-
 -- --------------------------------------------------------
 
 --
@@ -56,14 +47,6 @@ CREATE TABLE `user` (
   `prenom` varchar(30) NOT NULL,
   `nom` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `user`
---
-
-INSERT INTO `user` (`id`, `mail`, `mdp`, `prenom`, `nom`) VALUES
-(1, 'theo', 'theo', 'theo', 'theo'),
-(3, 'nolan', 'nolan', 'nolan', 'nolan');
 
 --
 -- Index pour les tables déchargées
@@ -89,7 +72,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `postes`
 --
 ALTER TABLE `postes`
-  MODIFY `id_poste` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_poste` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `user`

@@ -20,6 +20,7 @@
             $nom = $_POST['nom'];
             $requete_inscription = $pdo->prepare("INSERT INTO user (mail, mdp, prenom, nom) VALUES ('".$email."','".$password."','".$prenom."','".$nom."');");
             $requete_inscription->execute();
+            header('Location: index.php');
         }
     }
 
@@ -39,6 +40,7 @@
                 $_SESSION['mail'] = $data["mail"];
                 $_SESSION['nom'] = $data["nom"];
                 $_SESSION['prenom'] = $data["prenom"];
+                header('Location: index.php');
             }
             else{
                 echo "mauvais mot de passe ou mauvaise adresse mail";            
@@ -60,12 +62,14 @@
             $id_user = $_POST['id_user'];
             $insert_poste = $pdo->prepare("INSERT INTO postes (id_user, texte, date_poste) VALUES ('".$id_user."','".$text."','".$date."');");
             $insert_poste->execute();
+            header('Location: index.php');
         }
 	}
     if (isset($_POST['delete_post'])) {
         $id_poste = $_POST['id_poste'];
         $delete_poste = $pdo->prepare("DELETE FROM postes WHERE id_poste = '".$id_poste."'");
         $delete_poste->execute();
+        header('Location: index.php');
 	}
     $select_postes = $pdo->prepare('SELECT * FROM postes INNER JOIN user ON postes.id_user = user.id');
     $select_postes->execute();
